@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nex Genix Creative Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a202c; 
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 64rem; 
+            width: 100%;
+            background-color: #2d3748; 
+            padding: 1.5rem; 
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); 
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row;
+            }
+        }
+
+        .section {
+            padding: 1.5rem; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .login-title,
+        .signup-title {
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #48bb78; 
+        }
+
+        .description {
+            color: #d1d5db; 
+            margin-top: 0.5rem; 
+        }
+
+        .input {
+            width: 100%;
+            padding: 0.75rem; 
+            background-color: #4a5568;
+            border: 1px solid #2d3748; 
+            border-radius: 0.5rem;
+            color: white;
+            outline: none;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+
+        .input:focus {
+            border-color: #48bb78; 
+            box-shadow: 0 0 0 2px #48bb78;
+        }
+
+        .button {
+            width: 100%;
+            background-color: #48bb78; 
+            color: white;
+            padding: 0.75rem; 
+            margin-top: 1rem;             
+	    border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #38a169;
+        }
+
+        .link {
+            text-align: center;
+            color: #48bb78;
+            margin-top: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        .divider {
+            border-left: 1px solid #4a5568; 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- Login Section -->
+        <div class="section md:w-1/2">
+            <h1 class="login-title">Nex Genix Creative Solutions</h1>
+            <p class="description">Your Vision, Beautifully Engineered.</p>
+            <form class="mt-6">
+                <input type="text" placeholder="Email or phone number" class="input">
+                <input type="password" placeholder="Password" class="input mt-4">
+                <button class="button">Log In</button>
+            </form>
+            <p class="link">Forgotten password?</p>
+        </div>
+        
+        <!-- Signup Section -->
+        <div class="section md:w-1/2 divider">
+            <h2 class="signup-title">Create an account</h2>
+            <p class="description text-sm">It's quick and easy.</p>
+            <form class="mt-4 grid grid-cols-2 gap-3">
+                <input type="text" placeholder="First name" class="input">
+                <input type="text" placeholder="Last name" class="input">
+                <input type="email" placeholder="Email" class="input col-span-2">
+                <input type="text" placeholder="Phone number" class="input col-span-2">
+                <input type="password" placeholder="New password" class="input col-span-2">
+                <input type="password" placeholder="Confirm password" class="input col-span-
+
+2">
+                <label for="birthdate" class="col-span-2 text-gray-400 text-
+
+sm">Birthdate</label>
+                <input type="date" id="birthdate" class="input col-span-2">
+                <button class="button col-span-2">Sign Up</button>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>
