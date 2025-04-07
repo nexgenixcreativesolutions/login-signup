@@ -154,13 +154,13 @@
         <div class="section md:w-1/2">
             <h1 class="login-title">Nex Genix Creative Solutions</h1>
             <p class="description">Your Vision, Beautifully Engineered.</p>
-            <form class="mt-6">
-                <input type="text" placeholder="Email or phone number" class="input">
+            <form id="login-form" class="mt-6">
+                <input type="text" placeholder="Email or phone number" class="input" id="login-email">
                 <div class="input-container mt-4">
                     <input type="password" id="login-password" placeholder="Password" class="input">
                     <span class="toggle-password" onclick="togglePassword('login-password')">👁️</span>
                 </div>
-                <button class="button">Log In</button>
+                <button type="submit" class="button">Log In</button>
             </form>
             <p class="link" onclick="openForgotPassword()">Forgotten password?</p>
         </div>
@@ -224,6 +224,16 @@
                 alert("Please enter your phone number.");
             }
         }
+
+        // Handle login and redirect to dashboard page
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // You can add actual login logic here (validation, API calls, etc.)
+            
+            // Redirect to the dashboard page
+            window.location.href = "https://nexgenixcreativesolutions.github.io/dashboard";
+        });
     </script>
 
 </body>
