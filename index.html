@@ -8,11 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background-color: #1a202c;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            background-color: #1a202c;
+            color: white;
         }
 
         .container {
@@ -21,7 +22,7 @@
             max-width: 64rem;
             width: 100%;
             background-color: #2d3748;
-            padding: 2rem;
+            padding: 1.5rem;
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
@@ -33,7 +34,7 @@
         }
 
         .section {
-            padding: 2rem;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -150,26 +151,24 @@
 <body>
 
     <div class="container">
-        <!-- Left Section: Login -->
+        
         <div class="section md:w-1/2">
             <h1 class="login-title">Nex Genix Creative Solutions</h1>
             <p class="description">Your Vision, Beautifully Engineered.</p>
-            <form id="login-form" class="mt-6">
-                <input type="text" placeholder="Email or phone number" class="input" id="login-email">
+            <form class="mt-6">
+                <input type="text" placeholder="Email or phone number" class="input">
+                
                 <div class="input-container mt-4">
                     <input type="password" id="login-password" placeholder="Password" class="input">
                     <span class="toggle-password" onclick="togglePassword('login-password')">👁️</span>
                 </div>
-                <button type="submit" class="button">Log In</button>
+
+                <button class="button">Log In</button>
             </form>
             <p class="link" onclick="openForgotPassword()">Forgotten password?</p>
         </div>
-
-        <!-- Divider between Login and SignUp -->
-        <div class="section md:w-1/2 divider hidden md:block"></div>
-
-        <!-- Right Section: Sign Up -->
-        <div class="section md:w-1/2">
+        
+        <div class="section md:w-1/2 divider">
             <h2 class="signup-title">Create an account</h2>
             <p class="description text-sm">It's quick and easy.</p>
             <form class="mt-4 grid grid-cols-2 gap-3">
@@ -177,22 +176,25 @@
                 <input type="text" placeholder="Last name" class="input">
                 <input type="email" placeholder="Email" class="input col-span-2">
                 <input type="text" placeholder="Phone number" class="input col-span-2">
+                
                 <div class="input-container col-span-2">
                     <input type="password" id="signup-password" placeholder="New password" class="input">
                     <span class="toggle-password" onclick="togglePassword('signup-password')">👁️</span>
                 </div>
+
                 <div class="input-container col-span-2">
                     <input type="password" id="confirm-password" placeholder="Confirm password" class="input">
                     <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
                 </div>
+
                 <label for="birthdate" class="col-span-2 text-gray-400 text-sm">Birthdate</label>
                 <input type="date" id="birthdate" class="input col-span-2">
                 <button class="button col-span-2">Sign Up</button>
             </form>
         </div>
+
     </div>
 
-    <!-- Modal for Forgot Password -->
     <div id="forgot-password-modal" class="modal">
         <h2 class="text-lg font-bold text-green-400">Reset Password</h2>
         <p class="text-gray-300 text-sm mt-2">Enter your phone number to receive a reset link.</p>
@@ -224,17 +226,53 @@
                 alert("Please enter your phone number.");
             }
         }
-
-        // Handle login and redirect to dashboard page
-        document.getElementById('login-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // You can add actual login logic here (validation, API calls, etc.)
-            
-            // Redirect to the dashboard page
-            window.location.href = "https://nexgenixcreativesolutions.github.io/dashboard";
-        });
     </script>
+<script>
+    // Redirect to dashboard if already logged in
+    if (window.location.href.includes("login-signup") && localStorage.getItem("isLoggedIn") === "true") {
+        window.location.href = "https://nexgenixcreativesolutions.github.io/dashboard";
+    }
+
+    // Intercept login form submit
+    document.querySelectorAll("form").forEach(form => {
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Only run login logic for the first form (login form)
+            if (form.querySelector('input[placeholder="Email or phone number"]')) {
+                const userInput = form.querySelector('input[placeholder="Email or phone number"]').value;
+                const passInput = form.querySelector('input[type="password"]').value;
+
+                if (userInput && passInput) {
+                    // Simulate login
+                    localStorage.setItem("isLoggedIn", "true");
+                    localStorage.setItem("user", userInput);
+                    window.location.href = "https://nexgenixcreativesolutions.github.io/dashboard";
+                } else {
+                    alert("Please enter credentials.");
+                }
+            }
+
+            // Prevent sign-up form from submitting too (for now)
+        });
+    });
+
+    // Logout logic (to be added to a logout button in dashboard)
+    window.logout = function() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("user");
+        window.location.href = "https://nexgenixcreativesolutions.github.io/login-signup/";
+    }
+
+    // Block access to protected pages
+    if (
+        !window.location.href.includes("login-signup") &&
+        !window.location.href.includes("404") &&
+        localStorage.getItem("isLoggedIn") !== "true"
+    ) {
+        window.location.href = "https://nexgenixcreativesolutions.github.io/login-signup/";
+    }
+</script>
 
 </body>
 </html>
