@@ -227,52 +227,6 @@
             }
         }
     </script>
-<script>
-    // Redirect to dashboard if already logged in
-    if (window.location.href.includes("login-signup") && localStorage.getItem("isLoggedIn") === "true") {
-        window.location.href = "https://nexgenixcreativesolutions.github.io/dashboard";
-    }
-
-    // Intercept login form submit
-    document.querySelectorAll("form").forEach(form => {
-        form.addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            // Only run login logic for the first form (login form)
-            if (form.querySelector('input[placeholder="Email or phone number"]')) {
-                const userInput = form.querySelector('input[placeholder="Email or phone number"]').value;
-                const passInput = form.querySelector('input[type="password"]').value;
-
-                if (userInput && passInput) {
-                    // Simulate login
-                    localStorage.setItem("isLoggedIn", "true");
-                    localStorage.setItem("user", userInput);
-                    window.location.href = "https://nexgenixcreativesolutions.github.io/dashboard";
-                } else {
-                    alert("Please enter credentials.");
-                }
-            }
-
-            // Prevent sign-up form from submitting too (for now)
-        });
-    });
-
-    // Logout logic (to be added to a logout button in dashboard)
-    window.logout = function() {
-        localStorage.removeItem("isLoggedIn");
-        localStorage.removeItem("user");
-        window.location.href = "https://nexgenixcreativesolutions.github.io/login-signup/";
-    }
-
-    // Block access to protected pages
-    if (
-        !window.location.href.includes("login-signup") &&
-        !window.location.href.includes("404") &&
-        localStorage.getItem("isLoggedIn") !== "true"
-    ) {
-        window.location.href = "https://nexgenixcreativesolutions.github.io/login-signup/";
-    }
-</script>
 
 </body>
 </html>
