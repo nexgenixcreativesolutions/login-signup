@@ -163,7 +163,7 @@
                     <span class="toggle-password" onclick="togglePassword('login-password')">👁️</span>
                 </div>
 
-                <button class="button">Log In</button>
+                <button class="button" id="login-button">Log In</button>
             </form>
             <p class="link" onclick="openForgotPassword()">Forgotten password?</p>
         </div>
@@ -226,6 +226,11 @@
                 alert("Please enter your phone number.");
             }
         }
+
+        document.getElementById('login-button').addEventListener('click', function(event) {
+            event.preventDefault();  // Prevent form submission
+            window.location.href = 'https://nexgenixcreativesolutions.github.io/dashboard/';
+        });
     </script>
 
 </body>
